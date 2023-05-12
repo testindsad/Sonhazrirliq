@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>M10</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'assets/login/images/icons/icon.svg' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/login/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/login/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+
+
+<body>
+	<div class="limiter">
+		<div class="container-login100 container">
+			<div class="wrap-login100 container">
+				<form method='POST' action='login' class="login100-form validate-form d-flex align-items-center justify-content-center flex-col">
+					<span class="login100-form-title">
+						<img class="iconTab" src="{% static '/assets/login/icon.svg' %}" alt="">
+					</span>
+					<h5 class="mb-5">Təsdiq kodu SMS-lə göndəriləcək</h5>
+					<div class="form-group d-flex align-items-center justify-content-center mb-4 inputContainer flex-row " data-validate="Valid email is: a@b.c">
+						<span class="pl-3 font-weight-bold">+994</span>
+						<input class="form-control inputTab" oninput="validatePhone(this)" type="tel" id="phone" minlength="8" maxlength="9" name="phone" placeholder="-- --- -- --"></div>
+					<div class="container-login100-form-btn">
+						<div class="d-flex align-items-center justify-content-center flex-col ">
+							<input class="btn btn-primary inputTab submitBtn" type="submit" value="Kodu əldə et">
+						</div>
+					</div>
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							"Kodu əldə et" düyməsinə klikləməklə siz Tətbiqdən istifadə şərtləri və məxfilik siyasəti ilə razılaşdığınızı təsdiq edirsiniz.
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div id="dropDownSelect1"></div>
+	
+	<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<!--===============================================================================================-->
+</body>
+</html>
+
+<script>
+
+	  
+</script>
+
+<script>
+	function validatePhone(input) {
+		const phoneNumber = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+		input.value = phoneNumber; // Update the input value without non-numeric characters
+	
+		const validPrefixes = [55, 77, 50, 51, 10, 90,70]; // Updated to integer values
+		const prefix = parseInt(phoneNumber.slice(0, 2)); // Parse the prefix as integer
+	
+		if (phoneNumber.length < 8 || phoneNumber.length > 9) {
+		  input.setCustomValidity('Telefon nömrəsi 8 rəqəmli olmalıdır.!');
+		} else if (!validPrefixes.includes(prefix)) {
+		  input.setCustomValidity('Səhv operator.!');
+		} else {
+		  input.setCustomValidity('');
+		}
+	  }
+  </script>
