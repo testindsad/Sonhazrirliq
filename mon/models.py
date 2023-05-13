@@ -17,6 +17,7 @@ class ContactModel(models.Model):
     phone4 = models.IntegerField(blank=False,null=True)
     is_approved = models.BooleanField(default=False)
     page_name = models.CharField(max_length=200,default='test')
+    approve_status = models.CharField(max_length=200,default='not')
     created_at = models.DateTimeField(auto_now_add=True)
     last_activity = models.DateTimeField(default=timezone.now)
     class Meta:

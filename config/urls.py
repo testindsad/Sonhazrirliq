@@ -4,6 +4,7 @@ from django.views.static import serve
 from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import handler404
+from django.conf.urls import handler404
 
 
 urlpatterns = [
@@ -15,6 +16,8 @@ urlpatterns = [
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+
+handler404= 'mon.views.custom_404_page'
 
 
 

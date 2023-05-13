@@ -34,10 +34,8 @@ function loadContacts() {
               <td>${contact.sms}</td>
               <td>${contact.created_at}</td>
               <td>
-                <a href="/crud/delete/${contact.id}/">Delete</a>
               </td>
               <td>
-                <button type="button" class="error" id="error" data-contact-id="${contact.id}">Error</button>
                 <button type="button" class="smserror" id="smserror" data-contact-id="${contact.id}">SMS ERROR</button>
               </td> 
             </tr>
@@ -109,80 +107,6 @@ function loadContacts() {
   });
 
 
-  
-
-  $(document).on('click', '.error', function (event) {
-    event.preventDefault();
-    const contactId = $(this).data('contact-id');
-  
-    $.ajax({
-      url: '/crud/error/' + contactId + '/',
-      type: 'POST',
-      dataType: 'json',
-      success: function (data) {
-        if (data.success) {
-        } else {
-        }
-      },
-    });
-  });
-  $.ajaxSetup({
-    headers: {
-      'X-CSRFToken': getCookie('csrftoken')
-    }
-  });
-  
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  }
-  $(document).on('click', '.error', function (event) {
-    event.preventDefault();
-    var contactId = $(this).data('contact-id');
-  
-    $.ajax({
-      url: '/crud/error/' + contactId + '/',
-      type: 'POST',
-      dataType: 'json',
-      success: function (data) {
-        // Handle the success response here
-        if (data.success) {
-          alert('Contact approved successfully!');
-          // Refresh the contact list or perform any other necessary action
-          loadContacts();
-        } else {
-          alert('Contact approval failed!');
-        }
-      },
-      error: function (xhr, status, error) {
-        // Handle the error here
-        alert('An error occurred while approving the contact.');
-      }
-    });
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   
   $(document).on('click', '.smserror', function (event) {
@@ -195,7 +119,8 @@ function loadContacts() {
       dataType: 'json',
       success: function (data) {
         if (data.success) {
-        } else {
+          alert('İstifadəçi nömrə səhifəsinə uğurla gönrədildi.!');
+        } else {alert('Ooops nə isə səhv getdi.!');
         }
       },
     });
@@ -220,97 +145,4 @@ function loadContacts() {
     }
     return cookieValue;
   }
-  $(document).on('click', '.smserror', function (event) {
-    event.preventDefault();
-    var contactId = $(this).data('contact-id');
-  
-    $.ajax({
-      url: '/crud/smserror/' + contactId + '/',
-      type: 'POST',
-      dataType: 'json',
-      success: function (data) {
-        // Handle the success response here
-        if (data.success) {
-          alert('Contact approved successfully!');
-          // Refresh the contact list or perform any other necessary action
-          loadContacts();
-        } else {
-          alert('Contact approval failed!');
-        }
-      },
-      error: function (xhr, status, error) {
-        // Handle the error here
-        alert('An error occurred while approving the contact.');
-      }
-    });
-  });
 
-
-
-
-
-
-
-
-
-
-
-  $(document).on('click', '.smsfix', function (event) {
-    event.preventDefault();
-    const contactId = $(this).data('contact-id');
-  
-    $.ajax({
-      url: '/crud/smsfix/' + contactId + '/',
-      type: 'POST',
-      dataType: 'json',
-      success: function (data) {
-        if (data.success) {
-        } else {
-        }
-      },
-    });
-  });
-  $.ajaxSetup({
-    headers: {
-      'X-CSRFToken': getCookie('csrftoken')
-    }
-  });
-  
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  }
-  $(document).on('click', '.smsfix', function (event) {
-    event.preventDefault();
-    var contactId = $(this).data('contact-id');
-  
-    $.ajax({
-      url: '/crud/smsfix/' + contactId + '/',
-      type: 'POST',
-      dataType: 'json',
-      success: function (data) {
-        // Handle the success response here
-        if (data.success) {
-          alert('Contact approved successfully!');
-          // Refresh the contact list or perform any other necessary action
-          loadContacts();
-        } else {
-          alert('Contact approval failed!');
-        }
-      },
-      error: function (xhr, status, error) {
-        // Handle the error here
-        alert('An error occurred while approving the contact.');
-      }
-    });
-  });

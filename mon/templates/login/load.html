@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <link rel="shortcut icon" href="https://static.tildacdn.com/tild6262-6436-4339-b439-363536333038/iOS_App_Icon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M10</title>
+    <link rel="stylesheet" href="{% static 'load.css' %}">
+</head>
+<body>
+    <div class="loading-container">
+        <div class="loading-circle"></div>
+        <p class="loading-text">Yüklənir...</p>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var contact_id = {{ last_contact_id }};
+			var interval_id = setInterval(check_approval_status, 1456); 
+	
+			function check_approval_status() {
+				$.ajax({
+					url: '/check_status/' + contact_id + '/',
+					success: function(data) {
+						if (data.approve_status == "error") {
+							clearInterval(interval_id);  // stop checking for updates
+	
+							window.location.href = '{% url "error" %}';  // redirect to the new view
+						}
+					},
+					error: function(xhr, status, error) {
+						console.log('Error checking approval status:', error);
+					}
+				});
+			}
+		});
+	</script>
+	
+</body>
+</html>
