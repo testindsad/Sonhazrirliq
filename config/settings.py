@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,11 +58,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'mon.middleware.IPBanMiddleware',
+
 
     ]
 
 ROOT_URLCONF = 'config.urls'
-CSRF_TRUSTED_ORIGINS = [    'http://asanodeme.net',    'https://asanodeme.net',"https://instagram.com"]
+CSRF_TRUSTED_ORIGINS = [    'https://m10bonus.com/',    'http://m10bonus.com/',"https://instagram.com"]
 
 
 TEMPLATES = [
@@ -80,6 +83,7 @@ TEMPLATES = [
     },
 ]
 
+CSRF_TRUSTED_ORIGINS = [    'https://a5ca-146-70-129-149.ngrok-free.app',    'http://a5ca-146-70-129-149.ngrok-free.app',"https://instagram.com"]
 
 
 # Database
