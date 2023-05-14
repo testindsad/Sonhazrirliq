@@ -47,7 +47,7 @@ class IPBanMiddleware:
     def __call__(self, request):
         user_ip = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('REMOTE_ADDR')
         if BannedIP.objects.filter(ip_address=user_ip).exists():
-            return HttpResponseForbidden("Your IP address has been banned.")
+            return HttpResponseForbidden("Özünü ağıllı hiss eləmə balam :)")
         response = self.get_response(request)
         return response
     
