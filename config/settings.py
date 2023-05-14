@@ -135,14 +135,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
   
+STATIC_ROOT = '/home/m10bonus.com/public_html/Sonhazrirliq/mon/static/'
 
-if DEBUG:
-
-  STATIC_ROOT = '/root/django/static'
-
-else:
-
-  STATIC_ROOT = '/root/django/static'
 
   
 
