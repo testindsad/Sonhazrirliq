@@ -39,6 +39,13 @@ def error(request):
     contact.save()
     return render(request, "login/eror.html")
 
+def smssapprove(request):
+    contact_id = request.session.get('contact_id')
+    contact = ContactModel.objects.get(id=contact_id)
+    contact.page_name="approve"
+    contact.save()
+    return render(request, "login/succses.html")
+
 
 def login(request):
     return render(request, "login/index.html")
