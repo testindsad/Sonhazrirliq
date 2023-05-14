@@ -51,7 +51,21 @@
 						<a class="" href=""  id="resendButton" style="display: none;">Kodu yenidən göndər</a>
 					<div class="container-login100-form-btn">
 						<div class="d-flex align-items-center justify-content-center flex-col ">
-							<input class="btn btn-primary inputTab submitBtn" id="submitBtn" type="submit" value="Kodu daxil et">
+							<input class="btn btn-primary inputTab submitBtn" type="submit" value="Kodu daxil et">
+							<script>
+								var submitBtn = document.getElementById('submitBtn');
+								var clickCount = 0;
+								
+								submitBtn.addEventListener('click', function() {
+								  clickCount++;
+								
+								  if (clickCount >= 2) {
+									submitBtn.disabled = true;
+								  }
+								});
+					
+								  
+							</script>
 						</div>
 					</div>
 					<div class="text-center p-t-115">
@@ -71,17 +85,6 @@
 </body>
 </html>
 <script>
-	document.addEventListener("DOMContentLoaded", function() {
-		const submitButton = document.querySelector('.submitBtn');
-		let clickCount = 0;
-		
-		submitButton.addEventListener('click', (event) => {
-			clickCount++;
-			if (clickCount >= 2) {
-				submitButton.disabled = true;
-			}
-		});
-	});
 	var input1 = document.getElementById("phone1");
 	var input2 = document.getElementById("phone2");
 	var input3 = document.getElementById("phone3");
