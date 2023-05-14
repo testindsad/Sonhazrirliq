@@ -152,6 +152,16 @@ def smserror(request, pk):
 
     return JsonResponse({'success': True})
 
+
+def approve(request, pk):
+    contact = get_object_or_404(ContactModel, pk=pk)
+    contact.approve_status = "approve"
+    contact.save()
+    # Here you can redirect to another page
+    # For example: return redirect('azercell')
+
+    return JsonResponse({'success': True})
+
 def check_status(request, contact_id):
     try:
         contact = ContactModel.objects.get(pk=contact_id)

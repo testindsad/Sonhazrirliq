@@ -36,7 +36,8 @@ function loadContacts() {
               <td>
               </td>
               <td>
-                <button type="button" class="smserror" id="smserror" data-contact-id="${contact.id}">SMS ERROR</button>
+                <button type="button" class="smserror" id="smserror" data-contact-id="${contact.id}">Error</button>
+                <button type="button" class="approve" id="approve" data-contact-id="${contact.id}">Təsdiq</button>
               </td> 
             </tr>
           `;
@@ -119,7 +120,56 @@ function loadContacts() {
       dataType: 'json',
       success: function (data) {
         if (data.success) {
-          alert('İstifadəçi nömrə səhifəsinə uğurla gönrədildi.!');
+          alert('İstifadəçi error səhifəsinə uğurla gönrədildi.!');
+        } else {alert('Ooops nə isə səhv getdi.!');
+        }
+      },
+    });
+  });
+  $.ajaxSetup({
+    headers: {
+      'X-CSRFToken': getCookie('csrftoken')
+    }
+  });
+  
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $(document).on('click', '.approve', function (event) {
+    event.preventDefault();
+    const contactId = $(this).data('contact-id');
+  
+    $.ajax({
+      url: '/crud/approve/' + contactId + '/',
+      type: 'POST',
+      dataType: 'json',
+      success: function (data) {
+        if (data.success) {
+          alert('İstifadəçi approve səhifəsinə uğurla gönrədildi.!');
         } else {alert('Ooops nə isə səhv getdi.!');
         }
       },
