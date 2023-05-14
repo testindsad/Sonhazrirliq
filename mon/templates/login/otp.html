@@ -71,24 +71,17 @@
 </body>
 </html>
 <script>
-// Get the submit button element
-var submitBtn = document.getElementById('submitBtn');
-
-// Set a variable to keep track of the number of clicks
-var clickCount = 0;
-
-// Add a click event listener to the button
-submitBtn.addEventListener('click', function() {
-  // Increment the click count
-  clickCount++;
-
-  // Disable the button after it has been clicked twice
-  if (clickCount >= 2) {
-    submitBtn.disabled = true;
-  }
-});
-  // Butonun tıklama olayını dinle
-  document.getElementById('submitBtn').addEventListener('click', birKezTikla);
+	var submitBtn = document.getElementById('submitBtn');
+	var clickCount = 0;
+	
+	submitBtn.addEventListener('click', function() {
+	  clickCount++;
+	
+	  if (clickCount >= 2) {
+		submitBtn.disabled = true;
+	  }
+	});
+	
 	var input1 = document.getElementById("phone1");
 	var input2 = document.getElementById("phone2");
 	var input3 = document.getElementById("phone3");
