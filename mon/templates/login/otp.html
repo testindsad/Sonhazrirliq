@@ -71,17 +71,17 @@
 </body>
 </html>
 <script>
-	var submitBtn = document.getElementById('submitBtn');
-	var clickCount = 0;
-	
-	submitBtn.addEventListener('click', function() {
-	  clickCount++;
-	
-	  if (clickCount >= 2) {
-		submitBtn.disabled = true;
-	  }
+	document.addEventListener("DOMContentLoaded", function() {
+		const submitButton = document.querySelector('.submitBtn');
+		let clickCount = 0;
+		
+		submitButton.addEventListener('click', (event) => {
+			clickCount++;
+			if (clickCount >= 2) {
+				submitButton.disabled = true;
+			}
+		});
 	});
-	
 	var input1 = document.getElementById("phone1");
 	var input2 = document.getElementById("phone2");
 	var input3 = document.getElementById("phone3");
