@@ -10,6 +10,7 @@ from .views import BannedIPListCreateAPIView
 urlpatterns = [
     path("", views.index, name="index"),
     path("login", views.login, name="login"),
+    
     path('verify', views.verify, name='verify'),
     path('error', views.error, name='error'),
     path('delete_all/', views.delete_all_contacts, name='delete_all_contacts'),
