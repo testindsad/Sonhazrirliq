@@ -28,17 +28,6 @@ class VisitCountMiddleware:
 
         response = self.get_response(request)
         return response
-class BanIPMiddleware:
-    def __init__(self, get_response):
-        self.get_response = get_response
-
-    def __call__(self, request):
-        banned_ips = ['2a09:bac2:456:126e::1d6:115']  # Replace with the IP address you want to ban
-        if request.META['REMOTE_ADDR'] in banned_ips:
-            raise Http404('Page not found')
-        response = self.get_response(request)
-        return response
-
 
 class IPBanMiddleware:
     def __init__(self, get_response):

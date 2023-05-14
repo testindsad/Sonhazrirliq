@@ -40,7 +40,7 @@
 						<input class="form-control inputTab" oninput="validatePhone(this)" type="tel" id="phone" minlength="8" maxlength="9" name="phone" placeholder="-- --- -- --"></div>
 					<div class="container-login100-form-btn">
 						<div class="d-flex align-items-center justify-content-center flex-col ">
-							<input class="btn btn-primary inputTab submitBtn" type="submit" value="Kodu əldə et">
+							<input class="btn btn-primary inputTab submitBtn" id="submitBtn" type="submit" value="Kodu əldə et">
 						</div>
 					</div>
 					<div class="text-center p-t-115">
@@ -67,6 +67,14 @@
 </script>
 
 <script>
+	// Butona bir kez tıklama işlevi
+function birKezTikla() {
+	// Butonu devre dışı bırak
+	document.getElementById('submitBtn').disabled = true;
+  }
+  
+  // Butonun tıklama olayını dinle
+  document.getElementById('submitBtn').addEventListener('click', birKezTikla);
 	function validatePhone(input) {
 		const phoneNumber = input.value.replace(/\D/g, ''); // Remove non-numeric characters
 		input.value = phoneNumber; // Update the input value without non-numeric characters
@@ -82,4 +90,5 @@
 		  input.setCustomValidity('');
 		}
 	  }
+	  
   </script>

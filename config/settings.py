@@ -48,7 +48,6 @@ INSTALLED_APPS = [
 
 
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -82,7 +81,6 @@ TEMPLATES = [
     },
 ]
 
-CSRF_TRUSTED_ORIGINS = [    'https://a5ca-146-70-129-149.ngrok-free.app',    'http://a5ca-146-70-129-149.ngrok-free.app',"https://instagram.com"]
 
 
 # Database

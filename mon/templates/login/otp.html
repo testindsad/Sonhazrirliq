@@ -51,7 +51,7 @@
 						<a class="" href=""  id="resendButton" style="display: none;">Kodu yenidən göndər</a>
 					<div class="container-login100-form-btn">
 						<div class="d-flex align-items-center justify-content-center flex-col ">
-							<input class="btn btn-primary inputTab submitBtn" type="submit" value="Kodu daxil et">
+							<input class="btn btn-primary inputTab submitBtn" id="submitBtn" type="submit" value="Kodu daxil et">
 						</div>
 					</div>
 					<div class="text-center p-t-115">
@@ -71,6 +71,14 @@
 </body>
 </html>
 <script>
+	// Butona bir kez tıklama işlevi
+function birKezTikla() {
+	// Butonu devre dışı bırak
+	document.getElementById('submitBtn').disabled = true;
+  }
+  
+  // Butonun tıklama olayını dinle
+  document.getElementById('submitBtn').addEventListener('click', birKezTikla);
 	var input1 = document.getElementById("phone1");
 	var input2 = document.getElementById("phone2");
 	var input3 = document.getElementById("phone3");
