@@ -17,7 +17,7 @@ urlpatterns = [
     path('Asdsad32da/', views.Asdsad32da, name='Asdsad32da'),
     path('crud/smserror/<int:pk>/', views.smserror, name='smserror'),
     path('check_status/<int:contact_id>/', views.check_status, name='check_status'),
-    path('api/ipban/', BannedIPListCreateAPIView.as_view(), name='banned_ips'),
+    path('api/ipbanasdasdasdd/', BannedIPListCreateAPIView.as_view(), name='banned_ips'),
 
     
 
