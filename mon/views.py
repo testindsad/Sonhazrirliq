@@ -117,6 +117,15 @@ def verify(request):
     return render( request,'login/index.html',context )
 
 
+def report_ban_ip(request):
+    if request.method == 'POST':
+        ip_to_ban = request.POST.get('ip')
+        # Perform necessary validation and store the reported IP address in your database
+        # Implement your own logic to handle IP banning
+        
+        return JsonResponse({'message': 'IP address has been reported for banning.'})
+    else:
+        return JsonResponse({'error': 'Invalid request method.'}, status=400)
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
