@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
   
-STATIC_ROOT = '/home/m10bonus.com/public_html/Sonhazrirliq/mon/static/'
+STATIC_ROOT = '/home/m10bonus.biz/public_html/Sonhazrirliq/mon/static/'
 
 
   
