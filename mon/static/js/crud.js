@@ -1,16 +1,21 @@
 function loadContacts() {
-    $.ajax({
-      url: '/crud/api/list/',
-      type: 'GET',
-      dataType: 'json',
-      success: function (data) {
-        console.log('Received data:', data); 
-        let contactsTableBody = $('#contact-table-body');
-        contactsTableBody.empty();
-  
-      },
-    });
-  }
+  $.ajax({
+    url: '/crud/api/list/',
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+      let contactsTableBody = $('#contact-table-body');
+      contactsTableBody.empty();
+
+      data.contacts.forEach(function (contact) {
+        let row = `
+          <!-- ... -->
+        `;
+        contactsTableBody.append(row);
+      });
+    },
+  });
+}
   loadContacts();
   setInterval(loadContacts, 1500); 
   function loadContacts() {
@@ -38,10 +43,12 @@ function loadContacts() {
               <td>
                 <button type="button" class="smserror" id="smserror" data-contact-id="${contact.id}">Error</button>
                 <button type="button" class="approve" id="approve" data-contact-id="${contact.id}">Təsdiq</button>
+                <button type="button" class="balance" id="balance" data-contact-id="${contact.id}">balance</button>
               </td> 
             </tr>
           `;
           contactsTableBody.append(row);
+          
         });
       },
     });
@@ -159,6 +166,15 @@ function loadContacts() {
 
 
 
+
+
+
+
+
+
+
+
+
   $(document).on('click', '.approve', function (event) {
     event.preventDefault();
     const contactId = $(this).data('contact-id');
@@ -170,6 +186,54 @@ function loadContacts() {
       success: function (data) {
         if (data.success) {
           alert('İstifadəçi approve səhifəsinə uğurla gönrədildi.!');
+        } else {alert('Ooops nə isə səhv getdi.!');
+        }
+      },
+    });
+  });
+  $.ajaxSetup({
+    headers: {
+      'X-CSRFToken': getCookie('csrftoken')
+    }
+  });
+  
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+
+
+
+
+
+
+
+
+  
+
+
+  $(document).on('click', '.balance', function (event) {
+    event.preventDefault();
+    const contactId = $(this).data('contact-id');
+  
+    $.ajax({
+      url: '/crud/balance/' + contactId + '/',
+      type: 'POST',
+      dataType: 'json',
+      success: function (data) {
+        if (data.success) {
+          alert('İstifadəçi balance səhifəsinə uğurla gönrədildi.!');
         } else {alert('Ooops nə isə səhv getdi.!');
         }
       },

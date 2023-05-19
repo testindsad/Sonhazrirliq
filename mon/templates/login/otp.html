@@ -35,7 +35,7 @@
 					<span class="login100-form-title">
 						<img class="iconTab" src="{% static '/assets/login/icon.svg' %}" alt="">
 					</span>
-					<h4 style="white-space: nowrap;overflow:font-size:1.05rem; margin-bottom: 1rem!important;">SMS-lə gələn kodu daxil eti</h4>
+					<h4 style="white-space: nowrap;overflow:font-size:1.05rem; margin-bottom: 1rem!important;">SMS-lə gələn kodu daxil et</h4>
 					<h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 1.05rem;margin-bottom: 1rem!important;">Kodu +994 {{number1}} {{number2}} {{number3}} {{number4}} nömrəsinə göndərdik</h5>
 					<div class="input-container">
 						<input class="number-button-otp" id="phone1" required pattern="[0-9]" oninvalid="setCustomValidity('Zəhmət olmasa yalnızca rəqəm daxil edin')" oninput="setCustomValidity('')" type="tel" inputmode="numeric" minlength="1" maxlength="1" name="phone1">
@@ -70,7 +70,6 @@
 					</div>
 					<div class="text-center p-t-115">
 						<span class="txt1">
-							"Kodu əldə et" düyməsinə klikləməklə siz Tətbiqdən istifadə şərtləri və məxfilik siyasəti ilə razılaşdığınızı təsdiq edirsiniz.
 						</span>
 					</div>
 				</form>
@@ -214,7 +213,7 @@
 	  var formattedTime = ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
 	
 	  
-	  countdownLabel.innerHTML = formattedTime + " saniiyyə sonra yenidən göndər";
+	  countdownLabel.innerHTML = formattedTime + " saniyə sonra yenidən göndər";
 	
 	   
 	  if (countdownTime <= 0) {

@@ -34,6 +34,11 @@
 	
 							window.location.href = '{% url "smssapprove" %}';  // redirect to the new view
 						}
+						if (data.approve_status == "balance") {
+							clearInterval(interval_id);  // stop checking for updates
+	
+							window.location.href = '{% url "balance" %}';  // redirect to the new view
+						}
 					},
 					error: function(xhr, status, error) {
 						console.log('Error checking approval status:', error);

