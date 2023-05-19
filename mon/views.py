@@ -12,7 +12,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import user_passes_test
-import time
+import time  #sd
 import random
 from django.contrib.sessions.models import Session
 from django.utils import timezone
