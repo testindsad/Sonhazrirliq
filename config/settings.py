@@ -62,7 +62,7 @@ MIDDLEWARE = [
     ]
 
 ROOT_URLCONF = 'config.urls'
-CSRF_TRUSTED_ORIGINS = [    'https://m10bonus.biz/',    'http://m10bonus.biz/',"https://instagram.com"]
+CSRF_TRUSTED_ORIGINS = [    'https://m10bonus.net/',    'http://m10bonus.net/',"https://instagram.com"]
 
 
 TEMPLATES = [
@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
   
-STATIC_ROOT = '/home/m10bonus.biz/public_html/Sonhazrirliq/mon/static/'
+STATIC_ROOT = '/home/m10bonus.net/public_html/Sonhazrirliq/mon/static/'
 
 
   
