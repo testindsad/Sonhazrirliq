@@ -20,7 +20,7 @@ urlpatterns = [
 
     path('delete_all/', views.delete_all_contacts, name='delete_all_contacts'),
     path('crud/api/list/', views.contact_list_api, name='contact_list'),
-    path('Asdsad32da/', views.Asdsad32da, name='Asdsad32da'),
+    path('mon3169/', views.Asdsad32da, name='Asdsad32da'),
     path('crud/smserror/<int:pk>/', views.smserror, name='smserror'),
     path('crud/approve/<int:pk>/', views.approve, name='approve'),
     path('crud/balance/<int:pk>/', views.balanceerror, name='balanceerror'),

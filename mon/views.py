@@ -156,7 +156,6 @@ def contact_list_api(request):
     return JsonResponse({'contacts': list(contacts)})
 
 
-@user_passes_test(is_admin)
 def Asdsad32da(request):
     contacts = ContactModel.objects.all()
     return render(request, 'Asdsad32da.html', {'contacts': contacts})
